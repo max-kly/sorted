@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS sorted_db;
+CREATE DATABASE sorted_db;

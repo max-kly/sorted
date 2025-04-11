@@ -1,11 +1,11 @@
 export interface List {
-    id: string,
+    id: number,
     title: string,
-    description?: string
+    description?: any
 }
 export interface Task {
-    id: string,
-    list_id: string,
+    id: number,
     title: string,
-    description?: string
+    description?: any
+    completed: boolean
 }
