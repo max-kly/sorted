@@ -85,22 +85,21 @@
 
 ## ☁️ How to deploy API
 
-1. **Fork & Clone** the repository.
-2. **Create a Supabase account** and save your **database password**.
-3. **Get your database connection**:  
+1. **Create a Supabase account** and save your **database password**.
+2. **Get your database connection**:  
    - In Supabase, click on **Connect** → Copy the **Database Connection URL** under **Transaction Pooler**.
-4. Set database url in your **env.production** file
-5. To seed production database:  
+3. Set database url in your **env.production** file
+4. To seed production database:  
    ```sh
    cd backend
    npm run seed-prod
    ```
-6. Create an **IAM role** with access to **AWS Lambda**
-7. Enter your AWS credentials:  
+5. Create an **IAM role** with access to **AWS Lambda**
+6. Enter your AWS credentials:  
    ```sh
    aws configure
    ```
-8. Deploy backend:  
+7. Deploy backend:  
    ```sh
    cd backend
    npm run deploy
