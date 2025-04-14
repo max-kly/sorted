@@ -113,4 +113,16 @@
 
 ---
 
+## 💭 Considerations
+
+### Monorepo vs Different repositories
+Better approach would be separate frontend and backend into different repos to avoid simplify deployment and development processes
+
+### Supabase vs AWS RDS database
+At this point I used Supabase for DB hosting but it leads to managing database separately. As project uses serverless framework and AWS, database hosting would be better with AWS RDS and will be migrated there in the nearest future
+
+### Storing API URL
+API url should be stored in env file and was hardcoded for easier testing and running frontend
+---
+
 Crafted with ❤️ by [Max Kly](https://github.com/max-kly)
