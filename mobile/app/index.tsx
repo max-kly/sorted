@@ -45,7 +45,10 @@ export default function Index() {
       <Text style={styles.title}>Welcome back!</Text>
       <FlatList<Task>
         style={styles.scrollableContainer}
-        data={tasks}
+        data={[...tasks].sort((a, b) => {
+          if (a.completed === b.completed) return 0;
+          return a.completed ? 1 : -1;
+        })}
         renderItem={({ item }) => (
           <ListElement
             id={item.id}
