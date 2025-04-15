@@ -62,7 +62,8 @@ export const styles = StyleSheet.create({
         paddingTop: 15,
         paddingBottom: 15,
         marginLeft: 20,
-        width: '90%',
+        width: '100%',
+        flexShrink: 1
     },
     description: {
         margin: 20,
