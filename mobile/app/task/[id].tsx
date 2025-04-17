@@ -5,6 +5,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { loadTaskById, removeTask, editTask, loadTasks } from "@/redux/tasksSlice";
+import Loader from "@/components/Loader";
 
 export default function TaskDetails() {
     const dispatch = useDispatch<AppDispatch>();
@@ -12,9 +13,11 @@ export default function TaskDetails() {
     const task = useSelector((state: RootState) => state.tasks.selected);
     const [taskTitle, setTaskTitle] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
+    const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         if (id) {
             dispatch(loadTaskById(id));
+            setIsLoading(false)
         }
     }, [id]);
     useEffect(() => {
@@ -23,7 +26,7 @@ export default function TaskDetails() {
             setTaskDescription(task.description);
         }
     }, [task]);
-    const mode = useColorScheme()
+    const mode = useColorScheme() || null
     const navigation = useNavigation()
     const background = mode === 'dark' ? '#000' : '#FFF'
     const color = mode === 'dark' ? '#FFF' : '#000'
@@ -42,37 +45,20 @@ export default function TaskDetails() {
             ),
         })
     }, [navigation])
-    if (mode === 'dark') {
-        return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.containerDark}>
-                    <TextInput multiline style={styles.titleDark} onChangeText={(text) => setTaskTitle(text)}
-                        onBlur={() => {
-                            dispatch(editTask({ id, updates: { title: taskTitle } }))
-                        }} value={taskTitle} />
+    if (isLoading) return <Loader mode={mode} />
 
-                    <TextInput multiline style={styles.descriptionDark}
-                        onChangeText={(text) => setTaskDescription(text)}
-                        onBlur={() => {
-                            dispatch(editTask({ id, updates: { description: taskDescription } }))
-                        }} placeholder="No description for the task" value={taskDescription} />
-                </View>
-            </TouchableWithoutFeedback >
-        );
-    }
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
-                <TextInput multiline style={styles.title} onChangeText={(text) => setTaskTitle(text)}
+            <View style={mode === 'dark' ? styles.containerDark : styles.container}>
+                <TextInput multiline style={mode === 'dark' ? styles.titleDark : styles.title} onChangeText={(text) => setTaskTitle(text)}
                     onBlur={() => {
                         dispatch(editTask({ id, updates: { title: taskTitle } }))
-                    }}>{taskTitle}</TextInput>
-
-                <TextInput multiline style={styles.description}
+                    }} value={taskTitle} />
+                <TextInput multiline style={mode === 'dark' ? styles.descriptionDark : styles.description}
                     onChangeText={(text) => setTaskDescription(text)}
                     onBlur={() => {
                         dispatch(editTask({ id, updates: { description: taskDescription } }))
-                    }} placeholder="No description for the task">{taskDescription}</TextInput>
+                    }} placeholder="No description for the task" value={taskDescription} />
             </View>
         </TouchableWithoutFeedback >
     );

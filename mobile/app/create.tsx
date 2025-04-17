@@ -5,13 +5,15 @@ import { View, Button, TextInput, useColorScheme, Alert, TouchableWithoutFeedbac
 import { AppDispatch } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { addTask } from "@/redux/tasksSlice";
+import Loader from "@/components/Loader";
 
 export default function Create() {
     const dispatch = useDispatch<AppDispatch>();
-    const mode = useColorScheme()
+    const mode = useColorScheme() || null
     const navigation = useNavigation()
     const [taskTitle, setTaskTitle] = useState('')
     const [taskDescription, setTaskDescription] = useState('')
+    const [isLoading, setIsLoading] = useState(true)
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
@@ -25,30 +27,18 @@ export default function Create() {
                 }} />
             ),
         })
+        setIsLoading(false)
     }, [navigation, taskTitle, taskDescription, mode])
-    if (mode === 'dark') {
-        return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.containerDark}>
-                    <TextInput multiline style={styles.titleDark} onChangeText={(text) => setTaskTitle(text)}
-                        placeholder="Enter task title" value={taskTitle} />
-                    <TextInput multiline style={styles.descriptionDark}
-                        onChangeText={(text) => setTaskDescription(text)}
-                        placeholder="Enter task description" value={taskDescription} />
-                </View>
-            </TouchableWithoutFeedback>
-        )
-    }
+    if (isLoading) return <Loader mode={mode} />
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
-                <TextInput multiline style={styles.title} onChangeText={(text) => setTaskTitle(text)}
-                    placeholder="Enter task title" value={taskTitle}></TextInput>
-                <TextInput multiline style={styles.description}
+            <View style={mode === 'dark' ? styles.containerDark : styles.container}>
+                <TextInput multiline style={mode === 'dark' ? styles.titleDark : styles.title} onChangeText={(text) => setTaskTitle(text)}
+                    placeholder="Enter task title" value={taskTitle} />
+                <TextInput multiline style={mode === 'dark' ? styles.descriptionDark : styles.description}
                     onChangeText={(text) => setTaskDescription(text)}
-                    placeholder="Enter task description" value={taskDescription}></TextInput>
+                    placeholder="Enter task description" value={taskDescription} />
             </View>
         </TouchableWithoutFeedback>
     )
-
 }

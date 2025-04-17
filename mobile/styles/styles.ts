@@ -82,8 +82,8 @@ export const styles = StyleSheet.create({
         borderBottomWidth: 1,
         width: '100%',
     },
-    noData: {
+    middleOfScreen: {
         justifyContent: 'center',
         alignItems: 'center'        
-    }
+    },
 });
