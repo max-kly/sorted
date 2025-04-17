@@ -20,7 +20,7 @@ export default function ListElement({ id, title, description, completed, mode }:
         }} />
         <Link style={styles.listItem} href={`/task/${id}`}>
             <View>
-                {mode === 'dark' ? <Text style={styles.textDark}>{title}</Text> : <Text style={styles.text}>{title}</Text>}
+                <Text style={mode === 'dark' ? styles.textDark : styles.text}>{title}</Text>
                 {description ? <Text style={styles.descriptionSm}>{description}</Text> : null}
             </View>
         </Link>

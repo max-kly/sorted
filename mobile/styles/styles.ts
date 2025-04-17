@@ -81,5 +81,9 @@ export const styles = StyleSheet.create({
         borderBottomColor: '#808080',
         borderBottomWidth: 1,
         width: '100%',
+    },
+    noData: {
+        justifyContent: 'center',
+        alignItems: 'center'        
     }
 });
