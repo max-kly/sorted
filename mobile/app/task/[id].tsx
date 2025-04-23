@@ -1,4 +1,4 @@
-import { Button, useColorScheme, View, TextInput, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Button, useColorScheme, View, TextInput, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 import { styles } from "@/styles/styles";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect, useLayoutEffect, useState } from "react";
@@ -39,7 +39,7 @@ export default function TaskDetails() {
                 <Button title='Delete' color={'#FF0000'} onPress={async () => {
                     await dispatch(removeTask(id));
                     await dispatch(loadTasks())
-                    alert('Task was deleted')
+                    Alert.alert('Deleted', 'Task has been deleted successfully.')
                     navigation.goBack()
                 }} />
             ),
