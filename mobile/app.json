@@ -8,34 +8,47 @@
     "scheme": "to-dos",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/icon.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "ios": {
+            "image": "./assets/images/splash-icon.png",
+            "resizeMode": "contain",
+            "dark": {
+              "backgroundColor": "#1e1e1e"
+            },
+            "light": {
+              "backgroundColor": "#FFFDD0"
+            }
+          },
+          "android": {
+            "image": "./assets/images/splash-icon.png",
+            "resizeMode": "contain",
+            "dark": {
+              "backgroundColor": "#1e1e1e"
+            },
+            "light": {
+              "backgroundColor": "#FFFDD0"
+            }
+          }
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "android": {
+      "package": "com.anonymous.sortedtodolist"
+    },
+    "ios": {
+      "bundleIdentifier": "com.anonymous.sortedtodolist"
     }
   }
 }
