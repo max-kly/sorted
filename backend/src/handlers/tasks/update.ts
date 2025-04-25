@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, Context, APIGatewayProxyResult } from 'aws-lambda';
-import { updateTask } from '../services/tasks';
+import { updateTask } from '../../services/tasks';
 
 export const handler = async (
     event: APIGatewayProxyEvent,

@@ -1,7 +1,9 @@
 import db from './connection'
-import { seed, tasks } from "./seed";
+import { seed } from "./seed";
+import tasks from './data/tasks';
+import users from './data/users';
 
-const runClear = () => {
-    return seed(tasks).then(() => db.end())
+const runSeed = () => {
+    return seed(tasks, users).then(() => db.end())
 }
-runClear()
+runSeed()

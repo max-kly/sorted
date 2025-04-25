@@ -3,7 +3,7 @@ import {
     Context,
     APIGatewayProxyResult,
 } from 'aws-lambda';
-import { getTasks } from '../services/tasks';
+import { getTasks } from '../../services/tasks';
 
 export const handler = async (
     event: APIGatewayProxyEvent,
