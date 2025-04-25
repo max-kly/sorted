@@ -15,25 +15,41 @@ const serverlessConfiguration = {
   },
   functions: {
     getTasks: {
-      handler: 'src/handlers/getAll.handler',
+      handler: 'src/handlers/tasks/getAll.handler',
       events: [{ http: { method: 'get', path: 'tasks', cors: true } }],
     },
     createTask: {
-      handler: 'src/handlers/create.handler',
+      handler: 'src/handlers/tasks/create.handler',
       events: [{ http: { method: 'post', path: 'tasks', cors: true } }],
     },
     getTaskByID: {
-      handler: 'src/handlers/getTask.handler',
+      handler: 'src/handlers/tasks/getTask.handler',
       events: [{ http: { method: 'get', path: 'tasks/{id}', cors: true } }],
     },
     updateTask: {
-      handler: 'src/handlers/update.handler',
+      handler: 'src/handlers/tasks/update.handler',
       events: [{ http: { method: 'patch', path: 'tasks/{id}', cors: true } }],
     },
     deleteTask: {
-      handler: 'src/handlers/delete.handler',
+      handler: 'src/handlers/tasks/delete.handler',
       events: [{ http: { method: 'delete', path: 'tasks/{id}', cors: true } }],
     },
+    loginUser: {
+      handler: 'src/handles/users/login.handler',
+      events: [{ http: { method: 'get', path: 'users/login', cors: true } }]
+    },
+    getUser: {
+      handler: 'src/handles/users/get.handler',
+      events: [{ http: { method: 'get', path: 'users/{id}}', cors: true } }]
+    },
+    updateUser: {
+      handler: 'src/handles/users/update.handler',
+      events: [{ http: { method: 'patch', path: 'users/{id}}', cors: true } }]
+    },
+    deleteUser: {
+      handler: 'src/handles/users/delete.handler',
+      events: [{ http: { method: 'delete', path: 'users/{id}}', cors: true } }]
+    }
   },
   custom: {
     'serverless-offline': {
